@@ -1,34 +1,38 @@
-Account for: <?php basename(dirname(__FILE__))."<br>"; echo basename(getcwd())."\n"; ?>
-<br>
-<?php
-$created = "2022-09-14";
-$timestamp1 = strtotime($created);
-$timestamp2 = Time();
-$diff = $timestamp2 - $timestamp1;
-?>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+            crossorigin="anonymous">
+    </script>
+    <style>
+        div.container {
+            padding: 0.5rem; margin: 1rem auto;
+            
+            max-width: 621px;
+            
+            background-color: #15151544;
 
+            border-radius: 1rem;
+        }
 
-Created: <?php echo $timestamp1; ?>
-<br>
-Time Now: <?php echo $timestamp2; ?>
-<br>
-Balance earned: <?php echo $diff; ?> yiff
-<br>
+        div.container > * {
+            margin: 0 0 0.5rem 0;
+        }
 
---------------------------------------------
-<br> Spendings: <br>
-<?php 
-$sticker = 500;
-echo "sticker: ".$sticker." yiff<br>";
-$icecream = 1000;
-echo "icecream: ".$icecream." yiff<br>";
-$car = 100000;
-echo "car: ".$car." yiff<br>";
+        div.container > br {
+            margin: 0;
+        }
+    </style>
+</head>
 
-echo "<br";
-$sum = $sticker + $icecream + $car;
-echo "sum: ".$sum." yiff<br>";
-$diff = $diff - $sum;
-echo "Current ballance: ".$diff." yiff<br>";
-?>
-
+<div id="refresh"></div>
+<script>
+    function refresh() {
+        $('#refresh').load('yiff.php', function() {
+            $(this).html();
+        });
+    }
+    refresh(); // This will run on page load
+    setInterval(function() {
+        refresh() // this will run after every 5 seconds
+    }, 1000);
+</script>
